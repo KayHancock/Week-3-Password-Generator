@@ -23,27 +23,36 @@ console.log (includeUppercaseElement);
 console.log (includeNumbersElement);
 console.log (includeSymbolsElement);
 
+
 // Write password to the #password input
+function generatePassword(characterAmountNumber, includeUppercaseElement, includeNumbersElement, includeSymbolsElement) {
+  let charCodes = LOWERCASE_CHAR_CODES
+  if (includeUppercaseElement) charCodes = charCodes.concat(UPPERCASE_CHAR_CODES)
+  if (includeSymbolsElement) charCodes = charCodes.concat(SYMBOL_CHAR_CODES)
+  if (includeNumbersElement) charCodes = charCodes.concat(NUMBER_CHAR_CODES)
+  
+  var passwordCharacters = []
+  for (let i = 0; i < characterAmountNumber; i++) {
+    var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
+    passwordCharacters.push(String.fromCharCode(characterCode))
+  }
+
+  console.log(passwordCharacters);
+
+  return passwordCharacters.join('')
+
+};
+
+
+
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
-}
-
-function generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols) {
-  let charCodes = LOWERCASE_CHAR_CODES
-  if (includeUppercase) charCodes = charCodes.concat(UPPERCASE_CHAR_CODES)
-  if (includeSymbols) charCodes = charCodes.concat(SYMBOL_CHAR_CODES)
-  if (includeNumbers) charCodes = charCodes.concat(NUMBER_CHAR_CODES)
   
-  const passwordCharacters = []
-  for (let i = 0; i < characterAmount; i++) {
-    const characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
-    passwordCharacters.push(String.fromCharCode(characterCode))
-  }
-  return passwordCharacters.join('')
+  console.log (password);
+
 };
 
 function arrayFromLowToHigh(low, high) {
@@ -54,16 +63,11 @@ function arrayFromLowToHigh(low, high) {
   return array
 };
 
-function syncCharacterAmount(e) {
-  var value = e.target.value
-  characterAmountNumber.value = value
-  characterAmountRange.value = value
-};
-
-
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
+
+
 
 
 
