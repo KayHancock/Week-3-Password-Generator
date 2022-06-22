@@ -17,22 +17,23 @@ var SYMBOL_CHAR_CODES = arrayFromLowToHigh(33, 47).concat(
   arrayFromLowToHigh(123, 126)
 );
 
-
-console.log (characterAmountNumber);
+var parsed = parseInt(characterAmountNumber);
+console.log (parsed);
 console.log (includeUppercaseElement);
 console.log (includeNumbersElement);
 console.log (includeSymbolsElement);
+console.log (typeof parsed);
 
 
 // Write password to the #password input
-function generatePassword(characterAmountNumber, includeUppercaseElement, includeNumbersElement, includeSymbolsElement) {
+function generatePassword(parsed, includeUppercaseElement, includeNumbersElement, includeSymbolsElement) {
   let charCodes = LOWERCASE_CHAR_CODES
   if (includeUppercaseElement) charCodes = charCodes.concat(UPPERCASE_CHAR_CODES)
   if (includeSymbolsElement) charCodes = charCodes.concat(SYMBOL_CHAR_CODES)
   if (includeNumbersElement) charCodes = charCodes.concat(NUMBER_CHAR_CODES)
   
   var passwordCharacters = []
-  for (let i = 0; i < characterAmountNumber; i++) {
+  for (let i = 0; i < parsed; i++) {
     var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
     passwordCharacters.push(String.fromCharCode(characterCode))
   }
@@ -44,14 +45,13 @@ function generatePassword(characterAmountNumber, includeUppercaseElement, includ
 };
 
 
-
 function writePassword() {
   var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var passwordText = document.querySelector(".password");
 
   passwordText.value = password;
   
-  console.log (password);
+  console.log (passwordText);
 
 };
 
@@ -65,7 +65,7 @@ function arrayFromLowToHigh(low, high) {
 
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword);
+generateBtn.addEventListener("click", writePassword);
 
 
 
