@@ -38,6 +38,7 @@ function generatePassword(parsed, includeUppercaseElement, includeNumbersElement
     passwordCharacters.push(String.fromCharCode(characterCode))
   }
 
+  console.log(characterCode);
   console.log(passwordCharacters);
 
   return passwordCharacters.join('')
