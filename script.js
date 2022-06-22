@@ -26,19 +26,24 @@ console.log (typeof parsed);
 
 
 // Write password to the #password input
-function generatePassword(parsed, includeUppercaseElement, includeNumbersElement, includeSymbolsElement) {
+function generatePassword(includeUppercaseElement, includeNumbersElement, includeSymbolsElement) {
   let charCodes = LOWERCASE_CHAR_CODES
   if (includeUppercaseElement) charCodes = charCodes.concat(UPPERCASE_CHAR_CODES)
   if (includeSymbolsElement) charCodes = charCodes.concat(SYMBOL_CHAR_CODES)
   if (includeNumbersElement) charCodes = charCodes.concat(NUMBER_CHAR_CODES)
   
+  console.log(charCodes);
+  console.log(parsed);
+
+
   var passwordCharacters = []
   for (let i = 0; i < parsed; i++) {
     var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
+    console.log(characterCode);
     passwordCharacters.push(String.fromCharCode(characterCode))
   }
 
-  console.log(characterCode);
+ 
   console.log(passwordCharacters);
 
   return passwordCharacters.join('')
@@ -52,7 +57,7 @@ function writePassword() {
 
   passwordText.value = password;
   
-  console.log (passwordText);
+  console.log (password);
 
 };
 
